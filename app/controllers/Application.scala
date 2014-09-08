@@ -2,7 +2,7 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.PerformanceHochrechnung
+import models.Example1
 
 object Application extends Controller {
 
@@ -17,7 +17,7 @@ object Application extends Controller {
       val contentType = picture.contentType
       picture.ref.moveTo(new File(s"$filename"))
       try {
-          val results = PerformanceHochrechnung(filename).evaluate.flatten
+          val results = Example1(filename).evaluate.flatten
           results match {
             case Nil => Ok
             case list => BadRequest("Results: " + list.mkString)
