@@ -9,11 +9,13 @@ Once the app is running, just drag your excel sheet onto the page and you will s
 
 ### Getting started
 
-1. To run the application locally, just run `activator ~run`
-2. Configure your checks in app/models/FileTypes.scala
-3. Launch the application inside a docker container with ...XXX
+Configure your checks in app/models/Checks.scala
 
+#### Run locally
+To run the application locally, just run `activator ~run`
 
+#### Run on docker
+Run the application inside a docker container with
 
 
 
