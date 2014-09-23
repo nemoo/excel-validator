@@ -34,7 +34,11 @@ case class CheckAColumn(sheet: Sheet, name: String) extends Helper {
     def findRowIndex: Option[Int] = (0 to sheet.getRow(0).getLastCellNum - 1)
         .map{index => 
             val cell = sheet.getRow(0).getCell(index)
-            (index, cell.getRichStringCellValue.getString)
+            val content = if (isNotBlank(cell))
+                              cell.getRichStringCellValue.getString 
+                          else
+                             "this_column_is_empty"    
+            (index, content)
         }.find(x => x._2 == name).map(x =>  Some(x._1) ).getOrElse(None)
     
     def checkColumnExists: Option[Error] = findRowIndex match {
@@ -79,7 +83,10 @@ trait Helper{
         cellRef.formatAsString
     }
 
-    def isNotBlank(cell: Cell) = cell.getCellType != Cell.CELL_TYPE_BLANK 
+    def isNotBlank(cell: Cell) = Option(cell) match {
+      case Some(c) => c.getCellType != Cell.CELL_TYPE_BLANK 
+      case _ => false
+    }  
 
     def renderCell(cell: Cell): String = if (cell == null){
             "null"
