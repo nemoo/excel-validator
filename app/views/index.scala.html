@@ -7,7 +7,32 @@
     <div class="dz-default dz-message">
       <span>Drop files here to upload</span>
     </div>
+    <div class="dz-error-message"><span data-dz-errormessage></span></div>
   </form>
 </div>  
+
+<div>
+	<p id="protocol">
+
+	</p>
+</div>
+
+<script type="text/javascript">
+	
+	Dropzone.options.mydropzona = {
+	  init: function() {
+	    this.on("error", function(file, message) { 	    	
+	    	
+	    	var div = document.getElementById('protocol');
+			div.innerHTML = message;
+	    });
+	    this.on("success", function(file, message) { 	    	
+	    	
+	    	var div = document.getElementById('protocol');
+			div.innerHTML = message;
+	    });
+	  }
+	};	
+</script>
 
 }
