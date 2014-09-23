@@ -19,8 +19,8 @@ object Application extends Controller {
       try {
           val results = Example1(filename).evaluate.flatten
           results match {
-            case Nil => Ok
-            case list => BadRequest("Results: " + list.mkString)
+            case Nil => Ok("All checks ok")
+            case list => BadRequest("Validation Errors:<br>" + list.mkString("<br>"))
           }
       }catch {
         case e: Exception => BadRequest(e.getMessage)
